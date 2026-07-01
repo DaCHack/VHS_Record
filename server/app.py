@@ -228,8 +228,11 @@ class VHS_Record:
             ),
             "-acodec",
             self.env_settings["ACODEC"],
-            "-s",
-            self.env_settings["OUTPUT_RES"],
+            *(
+                ("-s", self.env_settings["OUTPUT_RES"])
+                if self.env_settings["OUTPUT_RES"]
+                else []
+            ),
             path,
             "-map",
             "[out2]",
