@@ -1,18 +1,30 @@
-FROM python:3.8-slim
+FROM ubuntu:22.04
 
-ENV DEBIAN_FRONTEND=noninteractive
+ARG DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
+RUN apt-get update && apt-get install -y --no-install-recommends \
+      ca-certificates \
+      curl \
+      gnupg \
+      lsb-release \
+    && curl -fsSL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xBA6932366A755776" \
+         | gpg --dearmor -o /usr/share/keyrings/deadsnakes-archive-keyring.gpg \
+    && echo "deb [signed-by=/usr/share/keyrings/deadsnakes-archive-keyring.gpg] https://ppa.launchpad.net/deadsnakes/ppa/ubuntu $(lsb_release -sc) main" \
+         > /etc/apt/sources.list.d/deadsnakes.list \
+    && apt-get update && apt-get install -y --no-install-recommends \
       ffmpeg \
+      python3.8 \
+      python3.8-distutils \
       alsa-base \
       alsa-utils \
       libsndfile1-dev \
       libgl1-mesa-glx \
       v4l-utils \
-    && rm -rf /var/lib/apt/lists/*
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# pip is already available in python:3.8 images
+ADD https://bootstrap.pypa.io/get-pip.py .
+RUN python3.8 get-pip.py && rm get-pip.py
+
 RUN pip install --no-cache-dir \
       flask \
       flask-socketio \
