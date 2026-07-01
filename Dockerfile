@@ -8,8 +8,8 @@ RUN apt-get update && \
     apt-get update && \
     apt-get install -y \
       ffmpeg \
-      python3.8 \
-      python3.8-distutils \
+      python3 \
+      python3-distutils \
       alsa-base \
       alsa-utils \
       libsndfile1-dev \
@@ -17,7 +17,7 @@ RUN apt-get update && \
       v4l-utils \
     && apt-get clean
 ADD https://bootstrap.pypa.io/get-pip.py .
-RUN python3.8 get-pip.py && rm get-pip.py
+RUN python3 get-pip.py && rm get-pip.py
 RUN pip install \
       flask \
       flask-socketio \
@@ -26,4 +26,4 @@ RUN pip install \
       camerons-python
 COPY server /server
 
-CMD python3.8 server/app.py
+CMD python3 server/app.py
