@@ -24,6 +24,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 ADD https://bootstrap.pypa.io/get-pip.py .
 RUN python3 get-pip.py && rm get-pip.py
+RUN pip install --no-cache-dir "numpy<2"
 
 RUN pip install --no-cache-dir \
       flask \
