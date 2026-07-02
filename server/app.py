@@ -15,7 +15,7 @@ from time import sleep
 import signal
 import math
 
-app = Flask(__name__, static_url_path="", static_folder="static")
+app = Flask(__name__, static_url_path="/assets", static_folder="static")
 
 socket = SocketIO(app)
 
