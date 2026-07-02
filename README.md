@@ -1,5 +1,5 @@
-[![GitHub](https://img.shields.io/github/license/camerondevine/VHS_Record)](https://github.com/CameronDevine/VHS_Record/blob/master/LICENSE)
-[![Docker Image Size (tag)](https://img.shields.io/docker/image-size/camerondevine/vhs_record/latest)](https://hub.docker.com/repository/docker/camerondevine/vhs_record/general)
+[![GitHub](https://img.shields.io/github/license/camerondevine/VHS_Record)](https://github.com/DaCHack/VHS_Record/blob/master/LICENSE)
+[![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dachack/vhs_record/latest)](https://hub.docker.com/repository/docker/dachack/vhs_record/general)
 [![GitHub issues](https://img.shields.io/github/issues/camerondevine/VHS_Record)](https://github.com/CameronDevine/VHS_Record/issues)
 
 # VHS Record
