@@ -1,4 +1,4 @@
-FROM python:3.11-slim
+FROM ubuntu:jammy
 
 ARG DEBIAN_FRONTEND=noninteractive
 
