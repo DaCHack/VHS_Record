@@ -1,4 +1,4 @@
-FROM python:3.11-slim
+FROM ubuntu:jammy
 
 ARG DEBIAN_FRONTEND=noninteractive
 
@@ -7,8 +7,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
       curl \
       gnupg \
       lsb-release \
+    && curl -fsSL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xBA6932366A755776" \
+         | gpg --dearmor -o /usr/share/keyrings/deadsnakes-archive-keyring.gpg \
+    && echo "deb [signed-by=/usr/share/keyrings/deadsnakes-archive-keyring.gpg] https://ppa.launchpad.net/deadsnakes/ppa/ubuntu $(lsb_release -sc) main" \
+         > /etc/apt/sources.list.d/deadsnakes.list \
+    && apt-get update && apt-get install -y --no-install-recommends \
       ffmpeg \
       python3 \
+      python3-distutils \
       alsa-base \
       alsa-utils \
       libsndfile1-dev \
