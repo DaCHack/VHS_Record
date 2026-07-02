@@ -188,13 +188,6 @@ class VHS_Record:
                 "-c:v", "copy",
                 "-c:a", env["ACODEC"],
                 path,
-
-                # Detector stream (decoded)
-                "-map", "0:v",
-                "-vf", "fps=1,scale=320:240",
-                "-pix_fmt", "rgb24",
-                "-f", "rawvideo",
-                "-",
             ]
 
             return cmd
@@ -332,7 +325,14 @@ class VHS_Record:
 
     def img_handler(self):
         img_size = 921600
-        image = None
+        image = None    
+        
+        # In COPY mode, detection is disabled, so skip reading frames
+        if self.env_settings["VCODEC"].lower() == "copy":
+            while self.recording:
+                sleep(0.1)
+            return
+        
         while self.recording:
             data = self.process.stdout.read(img_size)
             self.time += 1
