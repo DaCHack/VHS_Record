@@ -191,7 +191,7 @@ class VHS_Record:
 
                 # Detector stream (decoded)
                 "-map", "0:v",
-                "-vf", "fps=1,scale=640:480",
+                "-vf", "fps=1,scale=320:240",
                 "-pix_fmt", "rgb24",
                 "-f", "rawvideo",
                 "-",
